@@ -5,23 +5,30 @@ import { HyperFolding } from '@/components/HyperFolding';
 import { Dashboard } from '@/components/Dashboard';
 
 export default function Home() {
-  const [unlocked, setUnlocked] = useState(false);
+  const [isUnlocked, setIsUnlocked] = useState(false);
+
   return (
-    <main className="min-h-screen bg-black selection:bg-white/20">
-      <nav className="fixed top-0 w-full h-24 border-b border-white/5 flex items-center justify-between px-16 z-[100] backdrop-blur-xl bg-black/50">
-        <div className="font-black text-2xl tracking-tighter text-zinc-100">APEX.CORE</div>
-        <div className="text-[9px] text-zinc-600 tracking-[1em] uppercase font-bold">Encrypted Interface</div>
+    <main className="min-h-screen bg-black text-white overflow-x-hidden">
+      <nav className="fixed top-0 inset-x-0 h-24 border-b border-zinc-900/50 flex items-center justify-between px-12 z-[100] backdrop-blur-md">
+        <div className="font-extrabold tracking-tighter text-xl">APEX</div>
+        <div className="flex gap-10 text-[10px] tracking-[0.5em] text-zinc-500 uppercase">
+          <span>Security</span>
+          <span>Abstract</span>
+          <span>Core</span>
+        </div>
       </nav>
 
-      {!unlocked && <MercurySurface onActivate={() => setUnlocked(true)} />}
+      {!isUnlocked && (
+        <MercurySurface onActivate={() => setIsUnlocked(true)} />
+      )}
 
-      <HyperFolding isActive={unlocked}>
-        <div className="w-full h-full bg-white flex items-center justify-center">
-          <h1 className="text-black font-black text-6xl">TRANSFORMING</h1>
+      <HyperFolding isActive={isUnlocked}>
+        <div className="w-full h-full bg-zinc-100 flex items-center justify-center">
+          <span className="text-black font-black text-8xl tracking-tighter">APEX</span>
         </div>
       </HyperFolding>
 
-      {unlocked && <Dashboard />}
+      {isUnlocked && <Dashboard />}
     </main>
   );
 }
