@@ -5,30 +5,33 @@ import { HyperFolding } from '@/components/HyperFolding';
 import { Dashboard } from '@/components/Dashboard';
 
 export default function Home() {
-  const [isUnlocked, setIsUnlocked] = useState(false);
+  const [unlocked, setUnlocked] = useState(false);
 
   return (
-    <main className="min-h-screen bg-black text-white overflow-x-hidden">
-      <nav className="fixed top-0 inset-x-0 h-24 border-b border-zinc-900/50 flex items-center justify-between px-12 z-[100] backdrop-blur-md">
-        <div className="font-extrabold tracking-tighter text-xl">APEX</div>
-        <div className="flex gap-10 text-[10px] tracking-[0.5em] text-zinc-500 uppercase">
-          <span>Security</span>
-          <span>Abstract</span>
-          <span>Core</span>
+    <main className="min-h-screen bg-black text-white selection:bg-zinc-800">
+      {/* 极简导航 */}
+      <nav className="fixed top-0 w-full h-24 border-b border-zinc-900/50 flex items-center justify-between px-12 z-[100] backdrop-blur-xl bg-black/30">
+        <div className="font-black text-xl tracking-tighter uppercase">Apex.Liquid</div>
+        <div className="flex gap-8 font-mono text-[9px] text-zinc-500 uppercase tracking-widest">
+          <span>0.00ms</span>
+          <span className="text-zinc-100">Live_Root</span>
         </div>
       </nav>
 
-      {!isUnlocked && (
-        <MercurySurface onActivate={() => setIsUnlocked(true)} />
-      )}
+      {/* 第一阶段：液态汞表面 */}
+      {!unlocked && <MercurySurface onActivate={() => setUnlocked(true)} />}
 
-      <HyperFolding isActive={isUnlocked}>
-        <div className="w-full h-full bg-zinc-100 flex items-center justify-center">
-          <span className="text-black font-black text-8xl tracking-tighter">APEX</span>
+      {/* 第二阶段：高维折叠过渡效果层 */}
+      <HyperFolding isActive={unlocked}>
+        <div className="w-full h-full bg-zinc-200 flex items-center justify-center">
+          <h1 className="text-black font-black text-9xl tracking-tighter animate-pulse uppercase">
+            Apex
+          </h1>
         </div>
       </HyperFolding>
 
-      {isUnlocked && <Dashboard />}
+      {/* 第三阶段：系统面板 */}
+      {unlocked && <Dashboard />}
     </main>
   );
 }
